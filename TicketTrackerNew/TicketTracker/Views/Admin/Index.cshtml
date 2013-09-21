@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TicketTracker.Models.TicketDB>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Administrator Menu</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table style="border: solid gray; border-width: 1px">
+    <tr>
+        <th style="padding-right: 10px; border-bottom: solid black; border-width: 1px">
+            Name
+        </th>
+        <th style="padding-right: 10px; border-bottom: solid black; border-width: 1px">
+            Type
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr style="padding-top: 10px;">
+        <td style="padding-right: 10px;">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td style="padding-right: 10px;">
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td style="padding-right: 10px;">
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Mark as complete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
