@@ -35,12 +35,7 @@ namespace TicketTracker.Models
 
     }
 
-    /*this is the repository for Entity Framework
-     *I'm still researching exactly how to utilize the dispose method. I know it has something to do with
-     *I know it has something to do with disposing of forms...
-     **/
-   
-    
+       
     public class TicketEFRepository : ITicketRepository
     {
         public IList<TicketDB> FindAll()

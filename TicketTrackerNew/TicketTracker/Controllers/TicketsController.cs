@@ -46,11 +46,12 @@ namespace TicketTracker.Controllers
         [HttpPost]
         public ActionResult Create(TicketDB ticketdb)
         {
-            return View(_ticketRepository.Create(ticketdb));
+            _ticketRepository.Create(ticketdb);
+            return RedirectToAction("Index");
         }
 
         //
-        // GET: /Tickets/Edit/5
+        // GET: /Tickets/Edit
 
         public ActionResult Edit(int id)
         {
@@ -63,7 +64,8 @@ namespace TicketTracker.Controllers
         [HttpPost]
         public ActionResult Edit(TicketDB ticketdb)
         {
-            return View(_ticketRepository.EditPost(ticketdb));
+            _ticketRepository.EditPost(ticketdb);
+            return RedirectToAction("Index");
         }
 
         //

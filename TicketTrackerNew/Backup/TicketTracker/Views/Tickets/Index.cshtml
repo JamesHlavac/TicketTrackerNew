@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TicketTracker.Models.TicketDB>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Current Active Tickets</h2>
+
+<p>
+    @Html.ActionLink("Post a Ticket", "Create")
+</p>
+<table>
+    <tr>
+        <th style="padding-right: 10px;">
+            Name
+        </th>
+        <th>
+            Type
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        
+    </tr>
+}
+
+</table>

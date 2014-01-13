@@ -3,33 +3,65 @@
 @{
     ViewBag.Title = "Index";
 }
+                      <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
+                      <script>
+                          $(document).ready(function () {
+                              $('.nav-toggle').click(function () {
+                                  //get collapse content selector
+                                  var collapse_content_selector = $(this).attr('href');
+
+                                  //make the collapse content to be shown or hide
+                                  var toggle_switch = $(this);
+                                  $(collapse_content_selector).toggle(function () {
+                                      if ($(this).css('display') == 'none') {
+                                          //change the button label to be 'Show'
+                                          toggle_switch.html('Show Tickets');
+                                      } else {
+                                          //change the button label to be 'Hide'
+                                          toggle_switch.html('Hide Tickets');
+                                      }
+                                  });
+                              });
+
+                          });
+                      </script>
 
 <h2>Current Active Tickets</h2>
 
-<p>
-    @Html.ActionLink("Post a Ticket", "Create")
-</p>
-<table>
-    <tr>
-        <th style="padding-right: 10px;">
-            Name
-        </th>
-        <th>
-            Type
-        </th>
-        <th></th>
-    </tr>
+                      <p>
+                          @Html.ActionLink("Create New", "Create")
+                      </p>
+                      <div>
+                          <button href="#collapse1" class="nav-toggle">Show Tickets</button>
+                      </div>
+                      <div id="collapse1" style="display:none">
+                          <table style="border: solid gray; border-width: 1px">
+                              <tr>
+                                  <th style="padding-right: 10px; border-bottom: solid black; border-width: 1px">
+                                      Name
+                                  </th>
+                                  <th style="padding-right: 10px; border-bottom: solid black; border-width: 1px">
+                                      Type
+                                  </th>
+                                  <th></th>
+                              </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        
-    </tr>
-}
+                              @foreach (var item in Model)
+                              {
+                                  <tr style="padding-top: 10px;">
+                                      <td style="padding-right: 10px;">
+                                          @Html.DisplayFor(modelItem => item.Name)
+                                      </td>
+                                      <td style="padding-right: 10px;">
+                                          @Html.DisplayFor(modelItem => item.Type)
+                                      </td>
+                                      <td style="padding-right: 10px;">
+                                          @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                          @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                          @Html.ActionLink("Mark as complete", "Delete", new { id = item.ID })
+                                      </td>
+                                  </tr>
+                              }
 
-</table>
+                          </table>
+                      </div>
